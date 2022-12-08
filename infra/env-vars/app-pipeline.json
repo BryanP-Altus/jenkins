@@ -1,0 +1,10 @@
+{
+  "state_bucket_name": "app-jenkins-ci-state",
+  "artifacts_bucket_name": "app-ci-pipelines-tfstate",
+  "aws_account": "574041070244",
+  "aws_region": "eu-west-1",
+  "organisation": "Altus",
+  "component": "devops-ci",
+  "business_owner": "Brian DelPizzo",
+  "created_by": "DevOps"
+}

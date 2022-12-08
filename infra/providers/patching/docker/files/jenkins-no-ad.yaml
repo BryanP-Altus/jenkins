@@ -1,0 +1,93 @@
+jenkins:
+jenkins:
+    systemMessage: "Serverless Jenkins"
+    numExecutors: 0
+    remotingSecurity:
+      enabled: true
+    agentProtocols:
+        - "JNLP4-connect"
+    securityRealm:
+        local:
+            allowsSignup: false
+            users:
+                - id: ecsuser
+                  password: ${ADMIN_PWD}
+    authorizationStrategy:
+        roleBased:
+          roles:
+            global:
+              - assignments:
+                - "ecsuser"
+                name: "admin"
+                pattern: ".*"
+                permissions:
+                  - "Overall/Administer"
+              - name: "developers"
+                pattern: ".*"
+                permissions:
+                  - "Overall/Read"
+                  - "Job/Build"
+                  - "Agent/Build"
+                  - "View/Read"
+                  - "Run/Replay"
+              - name: "devops"
+                pattern: ".*"
+                permissions:
+                  - "Job/Move"
+                  - "Job/Build"
+                  - "Credentials/ManageDomains"
+                  - "View/Create"
+                  - "Agent/Configure"
+                  - "Job/Read"
+                  - "Credentials/Update"
+                  - "Agent/Create"
+                  - "Job/Delete"
+                  - "Agent/Build"
+                  - "View/Configure"
+                  - "Agent/Provision"
+                  - "SCM/Tag"
+                  - "Job/Create"
+                  - "Job/Discover"
+                  - "Agent/Connect"
+                  - "Agent/Delete"
+                  - "Run/Replay"
+                  - "Agent/Disconnect"
+                  - "Run/Delete"
+                  - "Job/Cancel"
+                  - "Overall/Read"
+                  - "Run/Update"
+                  - "Credentials/Create"
+                  - "View/Delete"
+                  - "Job/Configure"
+                  - "Job/Workspace"
+                  - "View/Read"
+    crumbIssuer: "standard"
+    slaveAgentPort: 50000
+    clouds:
+        - ecs:
+              allowedOverrides: "inheritFrom,label,memory,cpu,image"
+              credentialsId: ""
+              cluster: "arn:aws:ecs:eu-west-1:574041070244:cluster/jenkins-${SHORT_PROJECT}-main"
+              name: "fargate-cloud"
+              regionName: eu-west-1
+              retentionTimeout: 10
+              jenkinsUrl: "http://controller.jenkins-${SHORT_PROJECT}:8080"
+              templates:
+                  - cpu: "1024"
+                    image: "argusdockersvc1/terraform:1.2.5"
+                    label: "terraform1.2.5-ci"
+                    executionRole: arn:aws:iam::574041070244:role/jenkins-${SHORT_PROJECT}-ecs-execution-role
+                    launchType: "FARGATE"
+                    memory: 0
+                    memoryReservation: 2048
+                    networkMode: "default"
+                    privileged: false
+                    remoteFSRoot: "/home/jenkins"
+                    securityGroups: "${SG_GROUP}"
+                    sharedMemorySize: 0
+                    subnets: subnet-095f5391524b50668,subnet-07b3322bffd49c1e3,subnet-07d87f84d309c7007
+                    templateName: "InfraAgent"
+                    uniqueRemoteFSRoot: false                    
+security:
+  sSHD:
+    port: -1

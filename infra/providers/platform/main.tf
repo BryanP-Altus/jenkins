@@ -1,0 +1,25 @@
+module "serverless_jenkins_platform" {
+  source                                     = "../../modules/jenkins-platform"
+  name_prefix                                = local.name_prefix
+  tags                                       = var.tags
+  vpc_id                                     = data.aws_vpc.vpc_main.id
+  jenkins_controller_subnet_ids              = local.jenkins_controller_subnet_ids
+  jenkins_controller_port                    = var.jenkins_controller_port
+  jenkins_jnlp_port                          = var.jenkins_jnlp_port
+  jenkins_controller_memory                  = var.jenkins_controller_memory
+  jenkins_controller_cpu                     = var.jenkins_controller_cpu
+  jenkins_controller_task_log_retention_days = var.jenkins_controller_task_log_retention_days
+  ecs_execution_role_arn                     = data.aws_iam_role.ecs_execution_role.arn
+  region                                     = var.aws_region
+  stage                                      = var.stage
+  account_id                                 = var.aws_account
+  alb_acm_certificate_arn                    = data.aws_acm_certificate.ssl_certificate.arn
+  credentialsParam                           = var.credentialsParam
+  file_system_id                             = data.aws_ssm_parameter.efs_filesystem_id.value
+  efs_access_point                           = data.aws_ssm_parameter.efs_access_point_id.value
+  jenkins_controller_task_role_arn           = data.aws_iam_role.task_role.arn
+  project                                    = var.project
+  container_image                            = var.container_image
+  kaniko_image                               = var.kaniko_image
+  project_short_name                         = var.project_short_name
+}

@@ -1,0 +1,39 @@
+version: 0.2
+
+env:
+  shell: bash
+  variables:
+    TF_PLAN_NAME: ${env}-${component}
+
+phases:
+
+  install:
+    runtime-versions:
+       python: latest
+    commands:
+      - python -V
+      - pip3 install checkov
+      - pip3 install pytest
+
+  pre_build:
+    commands:
+      - echo '[INFO] Pre-build set up'
+      - |
+        if [ ${action} == "component-build" ]; then 
+          artifacts_path=$(echo "CODEBUILD_SRC_DIR_"${artifact})
+          cp ${!artifacts_path}/* ${CODEBUILD_SRC_DIR}/infra/providers/${component}; 
+        fi
+  build:
+    on-failure: ABORT
+    commands:
+      - echo "[INFO] Terraform action begins"
+      - make ${action} env=${env} component=${component}
+      - echo "[INFO] Terraform action completed"
+  post_build:
+    commands:
+      - echo "[INFO] ${action} run successfully."
+artifacts:
+  files:
+    - infra/providers/${component}/${env}-${component}.plan
+  name: TFArtifacts
+  discard-paths: yes

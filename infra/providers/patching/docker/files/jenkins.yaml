@@ -1,0 +1,229 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - aws:
+          accessKey: "${AWS_KEY}"
+          description: "Jenkins Agent access to APP environments to access infrastructure\
+            \ resources"
+          id: "JenkinsAgentAPPAWSAccess"
+          scope: GLOBAL
+          secretKey: "${AWS_SECRET}"
+jenkins:
+  systemMessage: "Serverless Jenkins"
+  numExecutors: 0
+  remotingSecurity:
+    enabled: true
+  agentProtocols:
+    - "JNLP4-connect"
+    - "Ping"
+  securityRealm:
+    azure:
+      cacheDuration: 3600
+      clientId: ${AZURE_ID}
+      clientSecret: ${AZURE_SECRET}
+      tenant: ${AZURE_TENANT}
+  authorizationStrategy:
+    azureAdMatrix:
+      permissions:
+      - "GROUP:Agent/Build:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Agent/Build:APP_Jenkins_LiveOps (19d23854-f5b6-44ea-9fd0-7d37647f0dd7)"
+      - "GROUP:Agent/Configure:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Agent/Connect:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Agent/Connect:APP_Jenkins_LiveOps (19d23854-f5b6-44ea-9fd0-7d37647f0dd7)"
+      - "GROUP:Agent/Create:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Agent/Delete:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Agent/Disconnect:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Credentials/Create:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Credentials/Delete:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Credentials/Update:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Credentials/View:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Credentials/View:APP_Jenkins_LiveOps (19d23854-f5b6-44ea-9fd0-7d37647f0dd7)"
+      - "GROUP:Job/Build:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Job/Build:APP_Jenkins_LiveOps (19d23854-f5b6-44ea-9fd0-7d37647f0dd7)"
+      - "GROUP:Job/Build:APP_Jenkins_Platform_Developers (08642500-6cda-444b-9e44-7e8dfd92b17c)"
+      - "GROUP:Job/Build:APP_Jenkins_SO_Developers (fc410125-85a7-49f4-803e-00446d94c0e2)"
+      - "GROUP:Job/Build:APP_Jenkins_VO_Developers (37e51e56-bc0e-4360-8f2b-78ea258d7687)"
+      - "GROUP:Job/Cancel:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Job/Cancel:APP_Jenkins_LiveOps (19d23854-f5b6-44ea-9fd0-7d37647f0dd7)"
+      - "GROUP:Job/Configure:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Job/Create:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Job/Delete:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Job/Discover:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Job/Move:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Job/Read:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Job/Read:APP_Jenkins_LiveOps (19d23854-f5b6-44ea-9fd0-7d37647f0dd7)"
+      - "GROUP:Job/Read:APP_Jenkins_Platform_Developers (08642500-6cda-444b-9e44-7e8dfd92b17c)"
+      - "GROUP:Job/Read:APP_Jenkins_SO_Developers (fc410125-85a7-49f4-803e-00446d94c0e2)"
+      - "GROUP:Job/Read:APP_Jenkins_VO_Developers (37e51e56-bc0e-4360-8f2b-78ea258d7687)"
+      - "GROUP:Job/Workspace:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Metrics/HealthCheck:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Metrics/ThreadDump:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Metrics/View:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Metrics/View:APP_Jenkins_LiveOps (19d23854-f5b6-44ea-9fd0-7d37647f0dd7)"
+      - "GROUP:Overall/Administer:APP_Jenkins_Admins (468eefad-4732-496d-ba6d-30e5a570dc70)"
+      - "GROUP:Overall/Read:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Overall/Read:APP_Jenkins_LiveOps (19d23854-f5b6-44ea-9fd0-7d37647f0dd7)"
+      - "GROUP:Overall/Read:APP_Jenkins_Platform_Developers (08642500-6cda-444b-9e44-7e8dfd92b17c)"
+      - "GROUP:Overall/Read:APP_Jenkins_SO_Developers (fc410125-85a7-49f4-803e-00446d94c0e2)"
+      - "GROUP:Overall/Read:APP_Jenkins_VO_Developers (37e51e56-bc0e-4360-8f2b-78ea258d7687)"
+      - "GROUP:Run/Delete:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Run/Replay:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:Run/Update:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:SCM/Tag:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:View/Configure:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:View/Create:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:View/Delete:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:View/Read:APP_Jenkins_DevOps (ef18adaa-95bb-4821-93b7-7c5eab7174e8)"
+      - "GROUP:View/Read:APP_Jenkins_LiveOps (19d23854-f5b6-44ea-9fd0-7d37647f0dd7)"
+      - "GROUP:View/Read:APP_Jenkins_Platform_Developers (08642500-6cda-444b-9e44-7e8dfd92b17c)"
+      - "GROUP:View/Read:APP_Jenkins_SO_Developers (fc410125-85a7-49f4-803e-00446d94c0e2)"
+      - "GROUP:View/Read:APP_Jenkins_VO_Developers (37e51e56-bc0e-4360-8f2b-78ea258d7687)"    
+  crumbIssuer: "standard"
+  slaveAgentPort: 50000
+  clouds:
+    - ecs:
+        allowedOverrides: "inheritFrom,label,memory,cpu,image"
+        cluster: "arn:aws:ecs:eu-west-1:574041070244:cluster/jenkins-${SHORT_PROJECT}-main"
+        name: "fargate-cloud"
+        regionName: eu-west-1
+        retentionTimeout: 10
+        credentialsId: "JenkinsAgentAPPAWSAccess"
+        jenkinsUrl: "http://controller.jenkins-${SHORT_PROJECT}:8080"
+        templates:
+        - assignPublicIp: false
+          cpu: "1024"
+          cpuArchitecture: "X86_64"
+          defaultCapacityProvider: false
+          enableExecuteCommand: false          
+          executionRole: arn:aws:iam::574041070244:role/jenkins-${SHORT_PROJECT}-ecs-execution-role
+          image: "argusdockersvc1/terraform:1.2.5"
+          label: "terraform1.2.5-ci"
+          launchType: "FARGATE"
+          memory: 0
+          memoryReservation: 2048
+          networkMode: "default"
+          operatingSystemFamily: "LINUX"
+          platformVersion: "LATEST"
+          privileged: false
+          remoteFSRoot: "/home/jenkins"
+          repositoryCredentials: "${DOCKER_CREDENTIALS}"
+          securityGroups: "${SG_GROUP}"
+          sharedMemorySize: 0
+          subnets: subnet-095f5391524b50668,subnet-07b3322bffd49c1e3,subnet-07d87f84d309c7007
+          templateName: "InfraAgent"
+          uniqueRemoteFSRoot: false
+    - ecs:
+        allowedOverrides: "inheritFrom,label,memory,cpu,image"
+        cluster: "arn:aws:ecs:eu-west-1:574041070244:cluster/jenkins-${SHORT_PROJECT}-spot"
+        jenkinsUrl: "http://controller.jenkins-${SHORT_PROJECT}:8080"
+        name: "fargate-cloud-sagemaker"
+        regionName: "eu-west-1"
+        retentionTimeout: 10
+        credentialsId: "JenkinsAgentAPPAWSAccess"
+        templates:
+        - assignPublicIp: false
+          cpu: 1024
+          cpuArchitecture: "X86_64"
+          defaultCapacityProvider: false
+          enableExecuteCommand: false
+          executionRole: "arn:aws:iam::574041070244:role/jenkins-${SHORT_PROJECT}-ecs-execution-role"
+          image: "574041070244.dkr.ecr.eu-west-1.amazonaws.com/sagemaker:v1"
+          label: "sagemaker"
+          launchType: "FARGATE"
+          memory: 0
+          memoryReservation: 2048
+          networkMode: "default"
+          operatingSystemFamily: "LINUX"
+          platformVersion: "LATEST"
+          privileged: false
+          remoteFSRoot: "/home/jenkins"
+          securityGroups: "${SG_GROUP}"
+          sharedMemorySize: 0
+          subnets: "subnet-095f5391524b50668,subnet-07b3322bffd49c1e3,subnet-07d87f84d309c7007"
+          templateName: "sagemaker"
+          uniqueRemoteFSRoot: false  
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  gitHostKeyVerificationConfiguration:
+    sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: true
+  sSHD:
+    port: -1
+unclassified:
+  amazonSNSNotifier:
+    awsAccessKey: "${AWS_KEY}"
+    awsSecretKey: "${AWS_SECRET}"
+    defaultLocalCredential: false
+    defaultMessageTemplate: "^${BUILD_URL}"
+    defaultNotifyOnConsecutiveSuccesses: true
+    defaultSendNotificationOnStart: false
+    defaultTopicArn: "${SNS_TOPIC}"
+  datadogGlobalConfiguration:
+    ciInstanceName: "jenkins-${SHORT_PROJECT}"
+    collectBuildLogs: true
+    emitConfigChangeEvents: false
+    emitSecurityEvents: true
+    emitSystemEvents: true
+    enableCiVisibility: true
+    hostname: "jenkins-${SHORT_PROJECT}.tools.altusintelligence.com"
+    refreshDogstatsdClient: false
+    reportWith: "DSD"
+    retryLogs: true
+    targetApiURL: "https://api.datadoghq.eu/api/"
+    targetHost: "localhost"
+    targetLogCollectionPort: 8126
+    targetPort: 8125
+    targetTraceCollectionPort: 10518
+  fingerprints:
+    fingerprintCleanupDisabled: false
+    storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    hookUrl: "https://jenkins-${SHORT_PROJECT}.tools.altusintelligence.com/github-webhook/"
+  gitSCM:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  globalTimeOutConfiguration:
+    operations:
+    - "abortOperation"
+  junitTestResultStorage:
+    storage: "file"
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "https://jenkins-${SHORT_PROJECT}.tools.altusintelligence.com/"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  pluginImpl:
+    enableCredentialsFromNode: false
+  pollSCM:
+    pollingThreadCount: 10
+  prismConfiguration:
+    theme: PRISM
+  timestamper:
+    allPipelines: false
+    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
+    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
+  warningsParsers:
+    consoleLogScanningPermitted: false
+tool:
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  mavenGlobalConfig:
+    globalSettingsProvider: "standard"
+    settingsProvider: "standard"
+

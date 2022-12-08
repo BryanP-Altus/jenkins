@@ -1,0 +1,17 @@
+{
+  "state_bucket_name"             : "app-jenkins-state",
+  "aws_region"                    : "eu-west-1",
+  "aws_account"                   : "574041070244",
+  "project"                       : "sandbox",
+  "project_short_name"            : "sandbox",
+  "environment"                   : "ci",
+  "domain_name"                   : "tools.altusintelligence.com",
+  "ssl_cert_type"                 : "AMAZON_ISSUED",
+  "allowed_cidrs"                 : ["10.64.0.0/16"],
+  "stage"                         : "test",
+  "container_image"               : "argusdockersvc1/app-jenkins-controller:2.346.2-lts-jdk11-ad",
+  "kaniko_image"                  : "argusdockersvc1/app-kaniko-agent:v0.16.0",
+  "aws_role"                      : "ci-app-execution-role",
+  "sns_endpoint_suscriptors"      : ["geovanny.campoverde@altusgroup.com","bryan.puente@altusgroup.com","santiago.munoz@altusgroup.com"],
+  "efs_disaster_recovery_id"      : "fs-01d01239f8f86f759"
+}
